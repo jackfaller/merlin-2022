@@ -18,7 +18,6 @@ from neurol.connect_device import connect_muse
 connect_muse()
 
 
-
 #%%
 '''Creating a BCI to track if we are relaxed or not'''
 from neurol import BCI_tools
