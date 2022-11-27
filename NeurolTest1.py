@@ -10,11 +10,13 @@ from neurol import BCI
 # import ble2lsl as bl
 # help(bl.ble2lsl.Streamer)
 # help(bl.devices)
+from plot import plot, plot_fft, plot_spectrogram
 
 #%%
 ''' CONNECT TO MUSE'''
 from neurol.connect_device import connect_muse
 connect_muse()
+
 
 
 #%%
@@ -35,7 +37,7 @@ my_clb = lambda stream : BCI_tools.band_power_calibrator(stream, ['AF7', 'AF8'],
 '''Creates a Transformer'''
 my_tfrm = lambda buffer, clb_info: BCI_tools.band_power_transformer(buffer, clb_info, ['AF7', 'AF8'], 'muse',
                                                     bands=['alpha_low', 'alpha_high'], epoch_len=1)
-# define a transformer that corresponds to the choices we made with the calibrator
+# define a transformer that corresponds to the choices we made with the calibrator|
 
 '''Creates a Classifier'''
 # Again, we define a classifier that matches the choices we made
@@ -62,16 +64,33 @@ my_bci.calibrate(stream)
 
 print(my_bci.calibration_info)
 
-'''Run the BCI'''
-try:
-    my_bci.run(stream)
+#%% Plotting Data Stream
+
+'''
+Plot the stream, uncomment 1 at time.
+'''
+try: 
+    plot(stream)                    # voltage against time
+    #plot_spectrogram(stream)        # frequency spectrogram
+    #plot_fft(stream)                # fft 
 except KeyboardInterrupt:
     stream.close()
     
     print('\n')
     print('QUIT BCI')
 
-    #yo
+#%% Running BCI
+
+'''Run the BCI'''
+try:
+    my_bci.run(stream)
+except KeyboardInterrupt:
+
+    stream.close()
+    
+    print('\n')
+    print('QUIT BCI')
+
 
 
 
