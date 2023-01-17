@@ -3,6 +3,9 @@
 """
 Created on Thu Jan 12 16:05:33 2023
 
+BEFORE RUNNING THIS SCRIPT:
+    Make sure you are in the following directory: 'neurol/neurol'
+
 @author: alossius
 """
 
