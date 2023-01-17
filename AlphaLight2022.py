@@ -3,9 +3,6 @@
 """
 Created on Thu Jan 12 16:05:33 2023
 
-BEFORE RUNNING THIS SCRIPT:
-    Make sure you are in the following directory: 'neurol/neurol'
-
 @author: alossius
 """
 
@@ -19,6 +16,7 @@ from phue import Bridge #HUE
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 from matplotlib import style
+from AlphaVisualizer import AlphaPlot
 
 # Function to set the color of the light
 def setColor(x, y): 
@@ -58,9 +56,9 @@ def changeLight2(input_):
     ys.append(state)
     xs.append(len(ys))
     
-    plt.figure()
-    plt.plot(xs, ys)
-    plt.show()
+    # plt.figure()
+    # plt.plot(xs, ys)
+    # plt.show()
 
 # def animate(i):
 #     ax1.clear()
@@ -68,9 +66,8 @@ def changeLight2(input_):
 
 #-------------------------------------------
 
-b = Bridge('192.168.2.64')  
+b = Bridge('192.168.0.187')  
 b.connect()
-b.logging=('debug')
 lights = b.get_light_objects()
     
 setDefault()
@@ -148,6 +145,7 @@ try:
     # CALIBRATE GENERIC BCI
         alpha_light_generic.calibrate(stream)
         alpha_light_generic.run(stream)
+        AlphaPlot(state)
     elif usrChoice == 2:
         alpha_light_automl.build_model(stream, ml_recording_length)
         alpha_light_automl.run(stream)
