@@ -56,9 +56,9 @@ def changeLight2(input_):
     ys.append(state)
     xs.append(len(ys))
     
-    # plt.figure()
-    # plt.plot(xs, ys)
-    # plt.show()
+    plt.figure()
+    plt.plot(xs, ys)
+    plt.show()
 
 # def animate(i):
 #     ax1.clear()
