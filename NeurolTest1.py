@@ -69,10 +69,11 @@ print(my_bci.calibration_info)
 Plot the stream, uncomment 1 at time.
 '''
 try: 
-    plot(stream)                    # voltage against time
-    #plot_spectrogram(stream)        # frequency spectrogram
+    #plot(stream)                    # voltage against time
+    plot_spectrogram(stream)        # frequency spectrogram
     #plot_fft(stream)                # fft 
 except KeyboardInterrupt:
+
     stream.close()
     
     print('\n')
@@ -89,9 +90,6 @@ except KeyboardInterrupt:
     
     print('\n')
     print('QUIT BCI')
-
-
-
 
 
 

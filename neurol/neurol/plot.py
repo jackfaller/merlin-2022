@@ -261,7 +261,7 @@ def plot_spectrogram(stream, channels=None, w_size=(1920, 1080)):
     # TODO: implement x-axis time range using ts defined above
     # TODO: implement y-axis frequency range using freqs defined above
     if isinstance(channels, (list, tuple)):
-        for ch_ind in channels:
+        for ch_ind in channels[0]:
             plt = win.addPlot(title=f'channel {ch_ind}')
             plt.setMouseEnabled(x=False, y=False)
 
@@ -350,3 +350,6 @@ def plot_spectrogram(stream, channels=None, w_size=(1920, 1080)):
         if not win.isVisible():
             running = False
             app.quit()
+
+def sayhi():
+    print('hi')
