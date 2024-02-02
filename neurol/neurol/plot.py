@@ -43,7 +43,7 @@ def plot(stream, channels=None, w_size=(1920, 1080)):
     # initialize pyqt graph app, window
     win = pg.GraphicsLayoutWidget(show=True)
     win.setWindowTitle('Live Plot')
-    app = pg.QtGui.QApplication
+    app = pg.QtWidgets.QApplication([])
     win.resize(w_size[0], w_size[1])
 
     # initialize plots/curves
@@ -138,7 +138,7 @@ def plot_fft(stream, channels=None, w_size=(1920, 1080)):
     # initialize pyqt graph app, window
     win = pg.GraphicsLayoutWidget(show=True)
     win.setWindowTitle('Fourrier Transform Live Plot')
-    app = pg.QtGui.QApplication
+    app = pg.QtWidgets.QApplication([])
     win.resize(w_size[0], w_size[1])
 
     # initialize plots/curves
@@ -243,7 +243,7 @@ def plot_spectrogram(stream, channels=None, w_size=(1920, 1080)):
     # initialize pyqt graph app, window
     win = pg.GraphicsLayoutWidget(show=True)
     win.setWindowTitle('Spectrogram Live Plot')
-    app = pg.QtGui.QApplication
+    app = pg.QtWidgets.QApplication([])
     win.resize(w_size[0], w_size[1])
 
     # interpret image data as row-major to match scipy output
@@ -261,7 +261,7 @@ def plot_spectrogram(stream, channels=None, w_size=(1920, 1080)):
     # TODO: implement x-axis time range using ts defined above
     # TODO: implement y-axis frequency range using freqs defined above
     if isinstance(channels, (list, tuple)):
-        for ch_ind in channels[0]:
+        for ch_ind in channels:
             plt = win.addPlot(title=f'channel {ch_ind}')
             plt.setMouseEnabled(x=False, y=False)
 
@@ -350,6 +350,3 @@ def plot_spectrogram(stream, channels=None, w_size=(1920, 1080)):
         if not win.isVisible():
             running = False
             app.quit()
-
-def sayhi():
-    print('hi')
